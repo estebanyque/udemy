@@ -13,7 +13,7 @@ def cel2far(c):
 
 for t in temperatures:
     temperature = cel2far(t)
-    if temperature.isInt():
-    	file.write(str(temperature))
+    if type(temperature) == int or type(temperature) == float:
+    	file.write(str(temperature)+ "\n")
 
 file.close()
