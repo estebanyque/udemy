@@ -1,4 +1,0 @@
-list=[1,2,3]
-tuple=(1,2,3)
-dict={"Name":"Esteban","Profession":"Sysadmin"}
-dict["Name"]
