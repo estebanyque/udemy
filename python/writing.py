@@ -1,4 +1,8 @@
 #!/usr/bin/python
+"""
+This files open a file in writing mode
+and adds a new line
+"""
 
 file = open("example.txt", 'w')
 file.write("New line!")

@@ -7,6 +7,8 @@ def currency_converter(rate, euros):
     return dollars
 
 
-functions = [currency_converter(100, 1000), currency_converter(100, 2000)]
-
-print(functions)
+r=input("Enter rate: ")
+e=input("Enter euros: ")
+print(currency_converter(float(r),float(e)))
+#functions = [currency_converter(100, 1000), currency_converter(100, 2000)]
+#print(functions)
