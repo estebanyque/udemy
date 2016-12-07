@@ -3,17 +3,48 @@
 import folium
 import pandas
 
+df = pandas.read_csv("Volcanoes-USA.txt")
+
 mymap = folium.Map(
-    location=[45.372, -121.697],
+    location=[df["LAT"].mean(), df["LON"].mean()],
     zoom_start=4,
     tiles='Stamen Terrain')
 
-df = pandas.read_csv("Volcanoes-USA.txt")
+# Rango 1
+# menor valor ... (menor valor + (valor maximo - valor menor)) / 3
+# Rango 2
+#
 
-for lat, lon, name in zip(df['LAT'], df['LON'], df['NAME']):
+
+def color(elev):
+
+    minimum = int(min(df["ELEV"]))
+    step = int((max(df["ELEV"]) - min(df["ELEV"])) / 3)
+
+    if elev in range(minimum, minimum + step):
+        col = 'blue'
+    elif elev in range(minimum + step, minimum + step * 2):
+        col = 'green'
+    else:
+        col = 'orange'
+    return col
+
+
+for lat, lon, name, elev in zip(df['LAT'], df['LON'], df['NAME'], df['ELEV']):
+
+    #if elev > 3000:
+        #color = 'red'
+    #elif elev >= 1000 or elev <= 3000:
+        #color = 'orange'
+    #elif elev < 1000:
+        #color = 'yellow'
+    #else:
+        #color = 'blue'
+
     mymap.simple_marker(
-        location = [lat, lon],
-        popup = name,
-        marker_color = 'red')
+        location=[lat, lon],
+        popup=name,
+        #marker_color='green' if elev in range(0,1000) else 'orange' if elev in range(1000,3000) else 'red')
+        marker_color=color(elev))
 
-mymap.create_map(path="test2.html")
+mymap.create_map(path="test4.html")
