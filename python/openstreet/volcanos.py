@@ -41,10 +41,9 @@ for lat, lon, name, elev in zip(df['LAT'], df['LON'], df['NAME'], df['ELEV']):
     #else:
         #color = 'blue'
 
-    mymap.simple_marker(
-        location=[lat, lon],
-        popup=name,
-        #marker_color='green' if elev in range(0,1000) else 'orange' if elev in range(1000,3000) else 'red')
-        marker_color=color(elev))
+    mymap.add_children(folium.Marker(
+            location=[lat, lon],
+            popup=name,
+            icon=folium.Icon(color=color(elev))))
 
-mymap.create_map(path="test4.html")
+mymap.save(outfile="test4.html")
